@@ -2,12 +2,14 @@
 #include <signal.h>
 #include "headers/libft.h"
 
-void	empty1(void)
+void	empty1(int ignored)
 {
+	ignored += 0;
 }
 
-void	empty2(void)
+void	empty2(int ignored)
 {
+	ignored += 0;
 }
 
 int	send_char(int pid, unsigned char c)

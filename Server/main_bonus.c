@@ -5,7 +5,7 @@
 
 t_data	g_data;
 
-void  on(int sig, siginfo_t *info, void *context)
+void	on(int sig, siginfo_t *info, void *context)
 {
 	unsigned char	bit;
 
@@ -21,29 +21,36 @@ void	off(int sig, siginfo_t *info, void *context)
 	g_data.last_pid = info->si_pid;
 }
 
-int	main(void)
+int	func1(void)
 {
-	int					pid;
-	unsigned char		tmp;
-	struct	sigaction sa_on;
-	struct	sigaction sa_off;
+	g_data.buffer[g_data.pos] = g_data.c;
+	g_data.pos++;
+	if (!g_data.c)
+		return (1);
+	if (g_data.len == g_data.pos)
+	{
+		write(1, g_data.buffer, g_data.len);
+		g_data.pos = 0;
+		g_data.len = 0;
+	}
+	g_data.i = 0;
+	g_data.c = 0;
+	kill(g_data.last_pid, SIGUSR1);
+	return (0);
+}
 
-	pid = getpid();
-	printf("pid: %i\n", pid); //TODO replace with my own printf
-	sa_on.sa_flags = SA_SIGINFO;
-	sa_on.sa_sigaction = on;
-	sigaction(SIGUSR1, &sa_on, NULL);
-	sa_off.sa_flags = SA_SIGINFO;
-	sa_off.sa_sigaction = off;
-	sigaction(SIGUSR2, &sa_off, NULL);
-	g_data.len = 0;
+void	funcloop(void)
+{
+	unsigned char	tmp;
+
 	while (1)
 	{
 		pause();
 		usleep(10);
-		if (g_data.i != 8) {
+		if (g_data.i != 8)
+		{
 			kill(g_data.last_pid, SIGUSR1);
-			continue;
+			continue ;
 		}
 		if (g_data.len == 0)
 		{
@@ -53,24 +60,27 @@ int	main(void)
 				g_data.len++;
 				tmp <<= 1;
 			}
-//				printf("%i\n", g_data.len);
 			if (g_data.len == 0)
 				g_data.len = 1;
 		}
-		g_data.buffer[g_data.pos] = g_data.c;
-		g_data.pos++;
-		if (!g_data.c)
+		if (func1() == 1)
 			break ;
-//			printf("%i - %i\n", g_data.len, g_data.pos);
-		if (g_data.len == g_data.pos)
-		{
-			write(1, g_data.buffer, g_data.len);
-			g_data.pos = 0;
-			g_data.len = 0;
-		}
-		g_data.i = 0;
-		g_data.c = 0;
-		kill(g_data.last_pid, SIGUSR1);
 	}
+}
+
+int	main(void)
+{
+	struct sigaction	sa_on;
+	struct sigaction	sa_off;
+
+	printf("pid: %i\n", getpid()); //TODO replace with my own printf
+	sa_on.sa_flags = SA_SIGINFO;
+	sa_on.sa_sigaction = on;
+	sigaction(SIGUSR1, &sa_on, NULL);
+	sa_off.sa_flags = SA_SIGINFO;
+	sa_off.sa_sigaction = off;
+	sigaction(SIGUSR2, &sa_off, NULL);
+	g_data.len = 0;
+	funcloop();
 	return (0);
 }
