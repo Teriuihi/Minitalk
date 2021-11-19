@@ -2,6 +2,14 @@
 #include <signal.h>
 #include "headers/libft.h"
 
+void	empty1(void)
+{
+}
+
+void	empty2(void)
+{
+}
+
 int	send_char(int pid, unsigned char c)
 {
 	unsigned char	bit;
@@ -11,16 +19,18 @@ int	send_char(int pid, unsigned char c)
 	{
 		if (bit & c)
 		{
+			usleep(25);
 			if (kill(pid, SIGUSR1) == -1)
 				return (-1);
 		}
 		else
 		{
+			usleep(25);
 			if (kill(pid, SIGUSR2) == -1)
 				return (-1);
 		}
 		bit >>= 1;
-		usleep(50);
+		pause();
 	}
 	return (0);
 }
@@ -30,6 +40,8 @@ int	main(int len, char **args)
 	int		pid;
 	char	*input;
 
+	signal(SIGUSR1, empty1);
+	signal(SIGUSR2, empty2);
 	if (len != 3)
 		return (-1);
 	pid = ft_atoi(args[1]);
