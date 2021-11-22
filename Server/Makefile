@@ -5,11 +5,13 @@ RM=rm -f
 
 FILES=main.c
 FILES_BONUS=main_bonus.c
+FILES_BONUS_OBJ=$(FILES_BONUS:%.c=%.o)
+FILES_OBJ=$(FILES:%.c=%.o)
 
 ifdef BONUS
-	FILES_OBJ=$(FILES_BONUS:%.c=%.o)
+	ALL_FILES_OBJ=$(FILES_BONUS)
 else
-	FILES_OBJ=$(FILES:%.c=%.o)
+	ALL_FILES_OBJ=$(FILES)
 endif
 
 all: $(NAME)
@@ -22,7 +24,7 @@ bonus:
 	$(MAKE) BONUS=1 all
 
 clean:
-	$(RM) $(FILES_OBJ)
+	$(RM) $(FILES_OBJ) $(FILES_BONUS_OBJ)
 	$(MAKE) -C libft/ clean
 
 fclean: clean
