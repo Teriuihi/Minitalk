@@ -1,7 +1,7 @@
-#include <stdio.h>
 #include <unistd.h>
 #include <signal.h>
 #include "headers/rename.h"
+#include "libft/ft_printf/ft_printf.h"
 
 t_data	g_data;
 
@@ -73,7 +73,7 @@ int	main(void)
 	struct sigaction	sa_on;
 	struct sigaction	sa_off;
 
-	printf("pid: %i\n", getpid()); //TODO replace with my own printf
+	ft_printf("pid: %i\n", getpid());
 	sa_on.sa_flags = SA_SIGINFO;
 	sa_on.sa_sigaction = on;
 	sigaction(SIGUSR1, &sa_on, NULL);

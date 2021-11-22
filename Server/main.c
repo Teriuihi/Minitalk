@@ -1,11 +1,11 @@
-#include <stdio.h>
 #include <unistd.h>
 #include <signal.h>
 #include "headers/rename.h"
+#include "libft/ft_printf/ft_printf.h"
 
 t_data	g_data;
 
-void	on(int ignored)
+void	on()
 {
 	unsigned char	bit;
 
@@ -14,7 +14,7 @@ void	on(int ignored)
 	g_data.i++;
 }
 
-void	off(int ignored)
+void	off()
 {
 	g_data.i++;
 }
@@ -24,7 +24,7 @@ int	main(void)
 	int	pid;
 
 	pid = getpid();
-	printf("pid: %i\n", pid); //TODO replace with my own printf
+	ft_printf("pid: %i\n", pid);
 	signal(SIGUSR1, on);
 	signal(SIGUSR2, off);
 	while (1)

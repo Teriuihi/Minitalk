@@ -2,8 +2,10 @@ NAME=libft.a
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror
 RM=rm -f
-FILES=ft_atoi.c ft_isdigit.c
-FILES_OBJ=$(FILES:%.c=%.o)
+FILES=ft_calloc.c ft_itoa.c ft_memset.c ft_putchar_fd.c \
+ft_putnbr_fd.c ft_putstr_fd.c ft_strlen.c
+PRINTF=ft_printf.c hex.c hex_util.c printing.c
+FILES_OBJ=$(FILES:%.c=%.o) $(PRINTF:%.c=ft_printf/%.o)
 
 all: $(NAME)
 
