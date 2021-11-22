@@ -5,18 +5,22 @@
 
 t_data	g_data;
 
-void	on(int sig, siginfo_t *info, void *context)
+void	on(int norm_is_not, siginfo_t *info, void *always_ideal)
 {
 	unsigned char	bit;
 
+	norm_is_not = 0;
+	always_ideal = NULL;
 	bit = 0b10000000;
 	g_data.c |= bit >> g_data.i;
 	g_data.i++;
 	g_data.last_pid = info->si_pid;
 }
 
-void	off(int sig, siginfo_t *info, void *context)
+void	off(int norm_is_not, siginfo_t *info, void *always_ideal)
 {
+	norm_is_not = 0;
+	always_ideal = NULL;
 	g_data.i++;
 	g_data.last_pid = info->si_pid;
 }
