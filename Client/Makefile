@@ -18,6 +18,9 @@ $(NAME): $(FILES_OBJ)
 	$(MAKE) -C libft/
 	$(CC) $(CFLAGS) -o $(NAME) $(FILES_OBJ) libft/libft.a
 
+bonus:
+	$(MAKE) BONUS=1 all
+
 clean:
 	$(RM) $(FILES_OBJ)
 	$(MAKE) -C libft/ clean
