@@ -1,4 +1,4 @@
-#include "../headers/libft.h"
+#include "libft.h"
 
 /**
  * Checks if a character is a whitespace

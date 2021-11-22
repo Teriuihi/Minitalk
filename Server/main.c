@@ -5,17 +5,19 @@
 
 t_data	g_data;
 
-void	on()
+void	on(int ignored)
 {
 	unsigned char	bit;
 
+	ignored = 0;
 	bit = 0b10000000;
 	g_data.c |= bit >> g_data.i;
 	g_data.i++;
 }
 
-void	off()
+void	off(int ignored)
 {
+	ignored = 0;
 	g_data.i++;
 }
 

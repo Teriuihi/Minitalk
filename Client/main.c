@@ -1,6 +1,6 @@
 #include <unistd.h>
 #include <signal.h>
-#include "headers/libft.h"
+#include "libft/libft.h"
 
 int	send_char(int pid, unsigned char c)
 {

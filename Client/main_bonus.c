@@ -1,6 +1,6 @@
 #include <unistd.h>
 #include <signal.h>
-#include "headers/libft.h"
+#include "libft/libft.h"
 
 void	empty1(int ignored)
 {
