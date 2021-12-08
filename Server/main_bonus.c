@@ -1,6 +1,6 @@
 #include <unistd.h>
 #include <signal.h>
-#include "headers/rename.h"
+#include "headers/data.h"
 #include "libft/ft_printf/ft_printf.h"
 
 t_data	g_data;
@@ -15,6 +15,7 @@ void	on(int norm_is_not, siginfo_t *info, void *always_ideal)
 	g_data.c |= bit >> g_data.i;
 	g_data.i++;
 	g_data.last_pid = info->si_pid;
+	g_data.done = 1;
 }
 
 void	off(int norm_is_not, siginfo_t *info, void *always_ideal)
@@ -23,6 +24,7 @@ void	off(int norm_is_not, siginfo_t *info, void *always_ideal)
 	always_ideal = NULL;
 	g_data.i++;
 	g_data.last_pid = info->si_pid;
+	g_data.done = 1;
 }
 
 int	main(void)
@@ -50,7 +52,10 @@ int	main(void)
 			g_data.i = 0;
 			g_data.c = 0;
 		}
-		usleep(20);
+		while (!g_data.done)
+			usleep(1);
+		usleep(3);
+		g_data.done = 0;
 		kill(g_data.last_pid, SIGUSR1);
 	}
 	return (0);

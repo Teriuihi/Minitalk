@@ -8,5 +8,6 @@ typedef struct s_data
 	int				pos;
 	unsigned char	buffer[4];
 	int				last_pid;
+	int				done;
 }	t_data;
 #endif

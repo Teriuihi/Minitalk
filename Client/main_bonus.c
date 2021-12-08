@@ -21,18 +21,18 @@ int	send_char(int pid, unsigned char c)
 	{
 		if (bit & c)
 		{
-			usleep(25);
+			usleep(10);
 			if (kill(pid, SIGUSR1) == -1)
 				return (-1);
 		}
 		else
 		{
-			usleep(25);
+			usleep(10);
 			if (kill(pid, SIGUSR2) == -1)
 				return (-1);
 		}
-		bit >>= 1;
 		pause();
+		bit >>= 1;
 	}
 	return (0);
 }
