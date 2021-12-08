@@ -16,9 +16,9 @@ endif
 
 all: $(NAME)
 
-$(NAME): $(FILES_OBJ)
+$(NAME): $(ALL_FILES_OBJ)
 	$(MAKE) -C libft/
-	$(CC) $(CFLAGS) -o $(NAME) $(FILES_OBJ) libft/libft.a
+	$(CC) $(CFLAGS) -o $(NAME) $(ALL_FILES_OBJ) libft/libft.a
 
 bonus:
 	$(MAKE) BONUS=1 all

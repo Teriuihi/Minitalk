@@ -20,7 +20,7 @@ int	send_char(int pid, unsigned char c)
 				return (-1);
 		}
 		bit >>= 1;
-		usleep(50);
+		usleep(70);
 	}
 	return (0);
 }

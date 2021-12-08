@@ -5,6 +5,8 @@
  *
  * @param	c	Character to write
  * @param	fd	File descriptor to write to
+ *
+ * @return	amount of characters written
  */
 int	ft_putchar_fd(char c, int fd)
 {
