@@ -27,20 +27,8 @@ void	off(int norm_is_not, siginfo_t *info, void *always_ideal)
 	g_data.done = 1;
 }
 
-int	main(void)
+void	loop(void)
 {
-	int					pid;
-	struct sigaction	sa_on;
-	struct sigaction	sa_off;
-
-	pid = getpid();
-	ft_printf("pid: %i\n", pid);
-	sa_on.sa_flags = SA_SIGINFO;
-	sa_on.sa_sigaction = on;
-	sigaction(SIGUSR1, &sa_on, NULL);
-	sa_off.sa_flags = SA_SIGINFO;
-	sa_off.sa_sigaction = off;
-	sigaction(SIGUSR2, &sa_off, NULL);
 	while (1)
 	{
 		pause();
@@ -58,5 +46,22 @@ int	main(void)
 		g_data.done = 0;
 		kill(g_data.last_pid, SIGUSR1);
 	}
+}
+
+int	main(void)
+{
+	int					pid;
+	struct sigaction	sa_on;
+	struct sigaction	sa_off;
+
+	pid = getpid();
+	ft_printf("pid: %i\n", pid);
+	sa_on.sa_flags = SA_SIGINFO;
+	sa_on.sa_sigaction = on;
+	sigaction(SIGUSR1, &sa_on, NULL);
+	sa_off.sa_flags = SA_SIGINFO;
+	sa_off.sa_sigaction = off;
+	sigaction(SIGUSR2, &sa_off, NULL);
+	loop();
 	return (0);
 }
