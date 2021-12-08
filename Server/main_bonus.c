@@ -42,7 +42,7 @@ void	loop(void)
 		}
 		while (!g_data.done)
 			usleep(1);
-		usleep(3);
+		usleep(20);
 		g_data.done = 0;
 		kill(g_data.last_pid, SIGUSR1);
 	}
