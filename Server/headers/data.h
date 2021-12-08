@@ -1,5 +1,5 @@
-#ifndef RENAME_H
-# define RENAME_H
+#ifndef DATA_H
+# define DATA_H
 typedef struct s_data
 {
 	unsigned char	c;
