@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   hex_util.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: sappunn <sappunn@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2021/12/10 18:02:58 by sappunn       #+#    #+#                 */
+/*   Updated: 2021/12/10 18:02:58 by sappunn       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../libft.h"
 
 static int	recursion(char *res, long nbr, char *characters, int size)

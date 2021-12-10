@@ -1,5 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   internal.h                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: sappunn <sappunn@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2021/12/10 18:02:59 by sappunn       #+#    #+#                 */
+/*   Updated: 2021/12/10 18:02:59 by sappunn       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef INTERNAL_H
 # define INTERNAL_H
+
 int		print_string(char *s);
 int		print_char(int c);
 int		print_long(long i);
